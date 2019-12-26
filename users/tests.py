@@ -2,9 +2,6 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse, resolve
 
-from .forms import CustomUserCreationForm
-from .views import SignupView
-
 
 class CustomUserTest(TestCase):
 
@@ -34,23 +31,21 @@ class CustomUserTest(TestCase):
 
 
 class SignupPageTest(TestCase):
+    username = 'testuser'
+    email = 'testemail@gmail.com'
     def setUp(self):
-        url = reverse('signup')
+        url = reverse('account_signup')
         self.resp = self.client.get(url)
     
     def test_signup_template(self):
         self.assertEqual(self.resp.status_code, 200)
         self.assertContains(self.resp, 'Create New Account')
         self.assertNotContains(self.resp, 'Go away')
-        self.assertTemplateUsed('signup.html')
-    
-    def test_signup_resolve_view(self):
-        view = resolve('/accounts/signup/')
-        self.assertEqual(
-            view.func.__name__,
-            SignupView.as_view().__name__
-        )
+        self.assertTemplateUsed('accounts/signup.html')
     
     def test_signup_form(self):
-        form = self.resp.context.get('form')
-        self.assertIsInstance(form, CustomUserCreationForm)
+        new_user = get_user_model().objects.create_user(
+            self.username, self.email)
+        self.assertEqual(get_user_model().objects.all().count(), 1)
+        self.assertEqual(get_user_model().objects.all()[0].username, self.username)
+        self.assertEqual(get_user_model().objects.all()[0].email, self.email)
