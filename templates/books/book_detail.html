@@ -16,5 +16,21 @@
             </div>
         </div>
     </div>
+    <hr>
+    <div class="col-md-12 reviews mt-5">
+        <h4 class="mb-3">Reviews for {{ book }}:</h4>
+        {% for review in book.reviews.all %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">
+                    - {{ review.author }}
+                </h6>
+                {{ review.review }}
+            </div>
+        </div>
+        {% empty %}
+        No one reviewed yet, be the first!
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}
