@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% block title %} {{ book.title }} Detail {% endblock title %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
+                <span class="badge badge-dark">
+                    <h4>${{ book.price }}</h4>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
