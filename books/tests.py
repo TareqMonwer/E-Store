@@ -13,7 +13,7 @@ class BookTests(TestCase):
             email='djtest@mail.com',
             password='hellodj123',
         )
-        self.author = Permission.objects.get(codename='author')
+        self.pro = Permission.objects.get(codename='standard_pack')
 
         self.book = Book.objects.create(title='Think Python',
             author='Allen B. Downey',
@@ -50,10 +50,10 @@ class BookTests(TestCase):
     
     def test_book_detail_view_for_permitted_user(self):
         self.client.login(email='djtest@mail.com', password='hellodj123')
-        self.user.user_permissions.add(self.author)
+        self.user.user_permissions.add(self.pro)
         resp = self.client.get(self.book.get_absolute_url())
-        no_resp = self.client.get('/books/123/')
         self.assertEqual(resp.status_code, 200)
+        no_resp = self.client.get('/books/123/')
         self.assertEqual(no_resp.status_code, 404)
         self.assertContains(resp, 'Think Python')
         self.assertContains(resp, 'Nice One From Test')

@@ -8,6 +8,8 @@ services:
       - web.env
     environment: 
       - SECRET_KEY=c3*pe4hs0ouhyebd@339*hm$$pef=1(7rd%cl#uwyv@-b=-6w))
+      - STRIPE_TEST_PUBLISHABLE_KEY=pk_test_LQSyKCkMqhn7gBUYlvCXDCFK000YjvkAbd
+      - STRIPE_TEST_SECRET_KEY=sk_test_YjSOhFkXvKn0hn4wGhEnati000O8gVKwkc
       - DEBUG=1
     volumes:
       - .:/code

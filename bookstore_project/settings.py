@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'books.apps.BooksConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -171,3 +172,8 @@ EMAIL_PORT=os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS=os.environ.get('EMAIL_USE_TLS')
 
 DEFAULT_FROM_EMAIL = 'admin@djbooks.com'
+
+
+# Stripe integration
+STRIPE_TEST_PUBLISHABLE_KEY = os.environ.get('STRIPE_TEST_PUBLISHABLE_KEY')
+STRIPE_TEST_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET_KEY')

@@ -17,7 +17,7 @@ class Book(models.Model):
 
     class Meta:
         permissions = [
-            ('author', 'Can read all books'),
+            ('standard_pack', 'Can read all books'),
         ]
 
     def __str__(self):

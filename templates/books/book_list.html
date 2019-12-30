@@ -25,4 +25,11 @@
     </div>
     {% endfor %}
 </div>
+{% if not perms.books.standard_pack %}
+<div class="row justify-content-center text-center">
+    <div class="col-md-4">
+        <a href="{% url 'orders' %}" class="btn btn-success ">Get all books for $40 (only)</a>
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
